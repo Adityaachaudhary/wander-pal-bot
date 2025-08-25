@@ -2,39 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Travel Booking Website Design System */
 
 @layer base {
   :root {
+    /* Travel-themed color palette */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Travel blue theme */
+    --primary: 200 90% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 200 85% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 15% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 25 90% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 15% 85%;
+    --input: 215 15% 90%;
+    --ring: 200 90% 45%;
+
+    /* Travel-specific colors */
+    --travel-sky: 200 100% 85%;
+    --travel-ocean: 200 90% 45%;
+    --travel-sunset: 25 90% 60%;
+    --travel-success: 150 60% 50%;
+    
+    /* Beautiful gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(200 90% 45%) 0%, hsl(200 100% 85%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(25 90% 60%) 0%, hsl(25 100% 75%) 100%);
+    
+    /* Elegant shadows */
+    --shadow-card: 0 4px 20px -4px hsl(200 90% 45% / 0.15);
+    --shadow-elevated: 0 10px 40px -10px hsl(200 90% 45% / 0.25);
+    --shadow-travel: 0 8px 30px -8px hsl(25 90% 60% / 0.2);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --radius: 0.5rem;
 
@@ -101,5 +122,36 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Travel-specific utility classes */
+  .travel-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .travel-gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .travel-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .travel-shadow {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .travel-shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  .travel-transition {
+    transition: var(--transition-smooth);
+  }
+  
+  .travel-bounce {
+    transition: var(--transition-bounce);
   }
 }
