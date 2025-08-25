@@ -8,6 +8,10 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SearchResults from "./pages/SearchResults";
 import TripDetail from "./pages/TripDetail";
+import Hotels from "./pages/Hotels";
+import HotelDetail from "./pages/HotelDetail";
+import Attractions from "./pages/Attractions";
+import AttractionDetail from "./pages/AttractionDetail";
 import Chatbot from "./components/Chatbot";
 
 const queryClient = new QueryClient();
@@ -25,6 +29,10 @@ const App = () => {
             <Route path="/" element={<Index onChatToggle={() => setIsChatOpen(!isChatOpen)} />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/trips/:id" element={<TripDetail />} />
+            <Route path="/hotels" element={<Hotels />} />
+            <Route path="/hotels/:id" element={<HotelDetail />} />
+            <Route path="/attractions" element={<Attractions />} />
+            <Route path="/attractions/:id" element={<AttractionDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
