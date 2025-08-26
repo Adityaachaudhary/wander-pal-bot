@@ -411,10 +411,8 @@ npm run lint     # Run ESLint code quality checks
 
 ## 🚀 Deployment
 
-### Lovable Platform (Recommended)
-1. The app is already deployed on Lovable
-2. Access via the provided Lovable URL
-3. Automatic deployments on code changes
+### Platform (Recommended)
+1. Deploy it on any platform like vercel, netlify etc
 
 ### Manual Deployment Options
 
@@ -484,4 +482,3 @@ This project is created for demonstration purposes. All travel data is mock/samp
 
 **Project Status: ✅ COMPLETE & FULLY FUNCTIONAL**  
 **Last Updated: August 2025**  
-**Built with ❤️ using React, TypeScript, and Tailwind CSS**
