@@ -4,9 +4,11 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SearchResults from "./pages/SearchResults";
+import Trips from "./pages/Trips";
 import TripDetail from "./pages/TripDetail";
 import Hotels from "./pages/Hotels";
 import HotelDetail from "./pages/HotelDetail";
@@ -21,24 +23,27 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index onChatToggle={() => setIsChatOpen(!isChatOpen)} />} />
-            <Route path="/search" element={<SearchResults />} />
-            <Route path="/trips/:id" element={<TripDetail />} />
-            <Route path="/hotels" element={<Hotels />} />
-            <Route path="/hotels/:id" element={<HotelDetail />} />
-            <Route path="/attractions" element={<Attractions />} />
-            <Route path="/attractions/:id" element={<AttractionDetail />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
-        </BrowserRouter>
-      </TooltipProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index onChatToggle={() => setIsChatOpen(!isChatOpen)} />} />
+              <Route path="/search" element={<SearchResults />} />
+              <Route path="/trips" element={<Trips />} />
+              <Route path="/trips/:id" element={<TripDetail />} />
+              <Route path="/hotels" element={<Hotels />} />
+              <Route path="/hotels/:id" element={<HotelDetail />} />
+              <Route path="/attractions" element={<Attractions />} />
+              <Route path="/attractions/:id" element={<AttractionDetail />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

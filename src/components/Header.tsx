@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { Search, Menu, X, MessageCircle } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useNavigate } from 'react-router-dom';
+import ThemeToggle from '@/components/ThemeToggle';
 
 interface HeaderProps {
   onSearchSubmit?: (query: string) => void;
-  onChatToggle?: () => void;
 }
 
-const Header = ({ onSearchSubmit, onChatToggle }: HeaderProps) => {
+const Header = ({ onSearchSubmit }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
@@ -75,27 +75,12 @@ const Header = ({ onSearchSubmit, onChatToggle }: HeaderProps) => {
             >
               Places
             </button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onChatToggle}
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              <MessageCircle className="h-4 w-4 mr-2" />
-              Help
-            </Button>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onChatToggle}
-              className="text-primary"
-            >
-              <MessageCircle className="h-4 w-4" />
-            </Button>
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"

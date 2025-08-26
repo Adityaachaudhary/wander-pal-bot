@@ -45,7 +45,7 @@ const Index = ({ onChatToggle }: IndexProps) => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header onSearchSubmit={handleSearch} onChatToggle={onChatToggle} />
+      <Header onSearchSubmit={handleSearch} />
       
       {/* Hero Section */}
       <Hero />
