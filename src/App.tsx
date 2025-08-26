@@ -40,7 +40,7 @@ const App = () => {
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+            <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} onOpen={() => setIsChatOpen(true)} />
           </BrowserRouter>
         </TooltipProvider>
       </ThemeProvider>

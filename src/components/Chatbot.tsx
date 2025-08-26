@@ -11,6 +11,7 @@ import AttractionCard from './AttractionCard';
 interface ChatbotProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpen?: () => void;
 }
 
 interface Message {
@@ -22,7 +23,7 @@ interface Message {
   timestamp: Date;
 }
 
-const Chatbot = ({ isOpen, onClose }: ChatbotProps) => {
+const Chatbot = ({ isOpen, onClose, onOpen }: ChatbotProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -104,9 +105,52 @@ const Chatbot = ({ isOpen, onClose }: ChatbotProps) => {
     }
   };
 
-  const handleSuggestionClick = (suggestion: string) => {
+  const handleSuggestionClick = async (suggestion: string) => {
     setInputValue(suggestion);
-    handleSendMessage();
+    // Directly send the suggestion message
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      type: 'user',
+      content: suggestion,
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setIsLoading(true);
+
+    try {
+      const response: ChatResponse = await travelApi.chat({
+        sessionId: 'demo-session',
+        message: suggestion
+      });
+
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'bot',
+        content: response.reply,
+        cards: response.cards,
+        suggestions: response.suggestions,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'bot',
+        content: "Sorry, I'm having trouble processing your request. Please try again.",
+        suggestions: [
+          "Show trips to Goa",
+          "Best hotels in Manali",
+          "What to visit in Mumbai"
+        ],
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -170,7 +214,7 @@ const Chatbot = ({ isOpen, onClose }: ChatbotProps) => {
     return (
       <div className="fixed bottom-6 right-6 z-50">
         <Button
-          onClick={() => setInputValue('')}
+          onClick={onOpen}
           size="lg"
           className="rounded-full h-14 w-14 travel-gradient-accent hover:shadow-lg travel-bounce text-white border-0"
         >
